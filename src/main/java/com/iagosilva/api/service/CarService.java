@@ -1,21 +1,20 @@
 package com.iagosilva.api.service;
 
-import com.iagosilva.api.domain.Car;
+import com.iagosilva.api.service.dto.CarDTO;
 import io.leangen.graphql.annotations.GraphQLArgument;
-import io.leangen.graphql.annotations.GraphQLContext;
+import java.net.URISyntaxException;
 import java.util.List;
-import java.util.Optional;
+import org.springframework.http.ResponseEntity;
 
 public interface CarService {
 
-    List<Car> getCars();
+    ResponseEntity<List<CarDTO>> getCars();
 
-    Optional<Car> getCarById(@GraphQLArgument(name = "id") Long id);
+    ResponseEntity<CarDTO> getCarById(@GraphQLArgument(name = "id") Long id);
 
-    Car saveCar(@GraphQLArgument(name = "car") Car car);
+    ResponseEntity<CarDTO> saveCar(@GraphQLArgument(name = "car") CarDTO car) throws URISyntaxException;
+
+    ResponseEntity<CarDTO> updateCar(@GraphQLArgument(name = "car") CarDTO car);
 
     void deleteCar(@GraphQLArgument(name = "id") Long id);
-
-    boolean isCool(@GraphQLContext Car car);
-
 }
